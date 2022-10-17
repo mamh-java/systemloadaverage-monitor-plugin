@@ -14,6 +14,7 @@ import org.kohsuke.stapler.StaplerRequest;
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
 import java.lang.management.OperatingSystemMXBean;
+import java.util.logging.Logger;
 
 
 public class SystemLoadAverageMonitor extends NodeMonitor {
@@ -21,6 +22,7 @@ public class SystemLoadAverageMonitor extends NodeMonitor {
     @Extension
     @Symbol("systemloadaverage")
     public static final class DescriptorImpl extends AbstractAsyncNodeMonitorDescriptor<String> {
+
         @Override
         protected Callable<String, IOException> createCallable(Computer c) {
             return new SystemLoadAverageMonitor.MonitorTask();
@@ -47,4 +49,7 @@ public class SystemLoadAverageMonitor extends NodeMonitor {
             return String.format("%.4f", opsysMXbean.getSystemLoadAverage());
         }
     }
+
+    private static final Logger LOGGER = Logger.getLogger(SystemLoadAverageMonitor.class.getName());
+
 }
