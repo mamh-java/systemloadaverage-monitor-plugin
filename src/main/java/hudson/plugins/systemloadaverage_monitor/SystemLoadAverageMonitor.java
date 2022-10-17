@@ -44,7 +44,7 @@ public class SystemLoadAverageMonitor extends NodeMonitor {
 
         public String call() {
             final OperatingSystemMXBean opsysMXbean = ManagementFactory.getOperatingSystemMXBean();
-            return String.format("%s", opsysMXbean.getSystemLoadAverage());
+            return String.format("%.4f", opsysMXbean.getSystemLoadAverage());
         }
     }
 }
